@@ -1,0 +1,138 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16pt;
+  color: white;
+}
+
+body {
+  min-height: 100vh;
+  padding: 10px;
+  background-color: #101114;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  color: #00ffc4;
+}
+
+.main {
+  width: 700px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#todo-input {
+  box-sizing: border-box;
+  padding: 12px 20px;
+  width: 85%;
+  background: none;
+  border: 2px solid #4a4d57;
+  border-radius: 1000px;
+  font: inherit;
+  color: white;
+  caret-color: #00ffc4;
+}
+
+form {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 12px 30px;
+  border-radius: 1000px;
+  background-color: #00ffc4;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.todo {
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  background-color: #1c1d20;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.todo .todo-text {
+  flex-grow: 1;
+  transition: 200ms ease;
+  margin-left: 8px;
+}
+
+.delete-btn {
+  padding: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  border: 2px solid #00ffc4;
+  border-radius: 50%;
+  min-height: 20px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: 200ms ease;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ .custom-checkbox {
+  background-color: #00ffc4;
+}
+input[type="checkbox"]:checked ~ .custom-checkbox svg {
+  fill: #1c1d20;
+}
+input[type="checkbox"]:checked ~ .todo-text {
+  text-decoration: line-through;
+  color: #4a4d57;
+}
+input[type="checkbox"] {
+  display: none;
+}
+
+@media (max-width: 680px) {
+  html {
+    font-size: 12pt;
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+  }
+  #btn {
+    position: unset;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 15px;
+    height: auto;
+  }
+  h1 {
+    margin-top: 50px;
+    font-size: 10vw;
+  }
+}
