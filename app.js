@@ -1,3 +1,7 @@
+import EventEmitter from "./eventEmitter.js";
+
+const emitter = new EventEmitter();
+
 const todoForm = document.querySelector('form');
 const todoInput = document.getElementById('todo-input');
 const todoList =document.getElementById('todo-list');
@@ -21,13 +25,15 @@ todoForm.addEventListener('submit', function(e){
             updateTodoList();
             saveTodos();
             todoInput.value="";
+
+            emitter.emit("taskAdded", todoObject);
         }
     }
 
 function updateTodoList(){
     todoList.innerHTML = "";
     allTodos.forEach((todo, todoIndex)=>{
-      todoItem = createTodoItem(todo, todoIndex);
+let todoItem = createTodoItem(todo, todoIndex); // ✅ add "let"
       todoList.append(todoItem);
     })
 }
@@ -60,6 +66,11 @@ function createTodoItem(todo, todoIndex){
    checkbox.addEventListener("change", ()=>{
     allTodos[todoIndex].completed = checkbox.checked;
     saveTodos();
+
+    emitter.emit("taskCompleted", {
+  index: todoIndex,
+  completed: checkbox.checked
+});
    })
    checkbox.checked = todo.completed;
     return todoLI;
@@ -79,5 +90,7 @@ function deleteTodoItem(todoIndex){
     allTodos = allTodos.filter((_, i) => i!== todoIndex);
     saveTodos();
     updateTodoList();
+
+    emitter.emit("taskRemoved", todoIndex);
 }
 
