@@ -33,7 +33,7 @@ todoForm.addEventListener('submit', function(e){
 function updateTodoList(){
     todoList.innerHTML = "";
     allTodos.forEach((todo, todoIndex)=>{
-let todoItem = createTodoItem(todo, todoIndex); // ✅ add "let"
+let todoItem = createTodoItem(todo, todoIndex); 
       todoList.append(todoItem);
     })
 }
